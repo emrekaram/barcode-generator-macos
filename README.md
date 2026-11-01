@@ -1,64 +1,51 @@
-# QR Code & Code 128 Generator
+# barcode-generator-macos
 
-A powerful macOS application built with SwiftUI that allows users to generate high-quality **QR Codes** and **Code 128 barcodes**. Perfect for managing product labels, inventory tracking, or any scenario requiring visually clean and accurate code generation.
+A native macOS app for batch-generating serial **QR codes** and **Code 128 barcodes** as PNG files. Built for product labels and inventory tracking.
+
+![App screenshot](app_ss.png)
 
 ## Features
 
-### 🛠 Flexible Code Formats  
-- **Multiple Code Formats**: Generate either QR codes or Code 128 barcodes.
-- **Customizable Range**: Specify a range of numbers to create multiple codes in one go.
-- **Text Delimiter**: Add a custom delimiter (e.g., `-`, `_`, `/`) between the product name and the number in the code.
-- **White QR Code Option**: Toggle between black and white QR codes.
-- **Batch Export**: Codes are exported as PNG files in a dedicated folder within the `Downloads` directory.
-- **Text on Barcode**: Displays text below the Code 128 barcodes for added clarity. 
+- **Two formats:** QR code or Code 128 barcode
+- **Serial ranges:** generate a whole range in one go (`Product-001` … `Product-250`)
+- **Custom delimiter** between product name and number (`-`, `_`, `/`, …)
+- **White QR option** for printing on dark labels
+- **Readable Code 128:** the encoded text is printed under each barcode
+- **Organised export:** files go to `~/Downloads/<ProductName>_qr` or `~/Downloads/<ProductName>_128`, and the folder opens when generation finishes
+- Progress indicator and clear error messages for invalid input
 
-## How to Use
-1.	Enter the Product Name in the provided text field.
-2.	Specify the Start Number and End Number for the numeric range.
-3.	Add a Delimiter (e.g., -, _, /) if desired.
-4.	Select the Code Format (QR Code or Code 128 "Barcode").
-5.	[Optional] If generating QR codes, toggle the Use White QR Code option to create white codes.
-6.	Click the Generate button. The app will:
-- Create a folder in your Downloads directory named after your product and code format.
--	Generate PNG images for each code in the specified range.
--	Automatically open the folder upon completion.
+## Usage
 
-### ⚡ Batch Generation  
-Generate codes in bulk by providing a start and end range. The app automatically organizes your files into corresponding folders:  
-- `ProductName_qr` for QR Codes  
-- `ProductName_128` for Code 128 "Barcode" 
+1. Enter the product name.
+2. Set the start and end numbers.
+3. Optionally set a delimiter.
+4. Choose QR code or Code 128 (and the white QR option if needed).
+5. Click **Generate**.
 
-### ‼️ Important Note  
-#### Download the Project:
-1. After downloading the project, navigate to the **QR & Barcode Generator** folder.
-2. Open the **QR & Barcode Generator App**.
-3. Move the app to the **Applications** folder on your computer.
+## Install
 
-#### Or if you want to apply changes (You can't open the app from ):
+**Prebuilt app:** open `QR & Barcode Generator App/` and move `QR & Barcode Generator.app` to your Applications folder.
 
-After opening the project in Xcode, follow these steps to build and use the app:
+**Build from source:**
 
-1. Go to **Product** in the menu bar.
-2. Select **Archive**.
-3. Click on **Distribute App**.
-4. Choose **Custom** and then select **Copy App**.
-5. Click **Export**.
-6. Move the exported `.app` file to your Mac's **Applications** folder.
+1. Open `QR & Barcode Generator/QR & Barcode Generator.xcodeproj` in Xcode.
+2. **Product → Archive → Distribute App → Custom → Copy App → Export**.
+3. Move the exported `.app` to Applications.
 
-### 📂 Smart File Management  
-All codes are saved in the `Downloads` folder under format-specific directories for easy access and organization.  
+## Tech stack
 
-### 🧑‍💻 User-Friendly Interface  
-- Modern SwiftUI design for smooth navigation.  
-- Real-time progress indicator during generation.  
-- Clear error messages for invalid input or generation issues.  
+- Swift, SwiftUI
+- Core Image filters (`CIQRCodeGenerator`, `CICode128BarcodeGenerator`)
+- `FileManager` and `NSWorkspace` for export and opening the output folder
 
-## Tech Stack  
-- **SwiftUI**: Provides a sleek, native macOS interface.  
-- **Core Image Filters**: Used for QR Code and barcode generation with customizable styles.  
-- **macOS Native APIs**: `FileManager` for file handling, `NSWorkspace` for opening directories.  
+## Project structure
 
-This application is compatible with **macOS 13 (Ventura)** and later.
+```
+QR & Barcode Generator/        Xcode project and Swift sources
+QR & Barcode Generator App/    Prebuilt .app
+app_ss.png                     Screenshot
+```
 
-## Screenshots  
-![App Screenshot](app_ss.png)  
+## License
+
+[MIT](LICENSE)
